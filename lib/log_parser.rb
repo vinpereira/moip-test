@@ -1,3 +1,5 @@
+require 'terminal-table'
+
 class LogParser
 
     def initialize
@@ -19,16 +21,29 @@ class LogParser
     end
 
     def top_three_url
-        @arr.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:url]] += 1 }
-            .sort_by  { |k, v| v }
-            .reverse
-            .first(3)
-            .to_h
+        top_three = @arr.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:url]] += 1 }
+                        .sort_by  { |k, v| v }
+                        .reverse
+                        .first(3)
+                        .to_h
+
+        puts "TOP 3 URLS IN WEBHOOKS LOG FILE"
+
+        top_three.each { |key, value| puts "#{key} - #{value}" }
+
+        top_three
     end
 
-    def status_code_count
-        @arr.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:code]] += 1 }
-            .sort_by  { |k, v| v }
-            .to_h
+    def status_code_count_table
+        table = @arr.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:code]] += 1 }
+                    .sort_by  { |k, v| v }
+                    .to_a
+
+        puts "STATUS CODE TABLE"
+
+        puts Terminal::Table.new :headings => ['STATUS', 'COUNT'], 
+                                 :rows => table
+
+        table
     end 
 end
