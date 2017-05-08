@@ -1,6 +1,7 @@
 require 'terminal-table'
 
 class LogParser
+    attr_reader :arr
 
     def initialize
         @arr = []
@@ -18,7 +19,7 @@ class LogParser
         }
 
         @arr.push(hash) unless (line_url.nil? || line_url.empty?) && (line_code.nil? || line_code.empty?)
-    end
+    end # end-method
 
     def top_three_url
         top_three = @arr.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:url]] += 1 }
@@ -32,7 +33,7 @@ class LogParser
         top_three.each { |key, value| puts "#{key} - #{value}" }
 
         top_three
-    end
+    end # end-method
 
     def status_code_count_table
         table = @arr.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:code]] += 1 }
@@ -45,5 +46,5 @@ class LogParser
                                  :rows => table
 
         table
-    end 
-end
+    end # end-method
+end # end-class
