@@ -15,7 +15,7 @@ class LogParser
             code: line_code
         }
 
-        @arr.push(hash)
+        @arr.push(hash) unless (line_url.nil? || line_url.empty?) && (line_code.nil? || line_code.empty?)
     end
 
     def top_three_url
@@ -25,4 +25,10 @@ class LogParser
             .first(3)
             .to_h
     end
+
+    def status_code_count
+        @arr.each_with_object(Hash.new(0)) { |h1, h2| h2[h1[:code]] += 1 }
+            .sort_by  { |k, v| v }
+            .to_h
+    end 
 end
