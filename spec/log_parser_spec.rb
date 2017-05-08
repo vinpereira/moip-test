@@ -7,7 +7,7 @@ describe 'LogParser - Initialize' do
 
         expect(log_parser.arr).to be_empty
 	end
-end # end-decribe
+end # end-describe
 
 describe 'LogParser - Method' do
     before(:each) do
@@ -29,4 +29,4 @@ describe 'LogParser - Method' do
     it 'status_code_count_table - should return an Array with all status code and their count' do
 		expect(@log_parser.status_code_count_table.to_s).to eq '[["204", 1388], ["201", 1402], ["200", 1417], ["500", 1428], ["400", 1440], ["503", 1451], ["404", 1474]]'
 	end
-end # end-decribe
+end # end-describe
