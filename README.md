@@ -46,3 +46,35 @@ The evaluation will be based on:
 - Efficiency
 - Tests
 - Correct answer
+
+
+# My Solution
+
+### Programming Language and libraries
+
+- ruby 2.3.3 @ Windows 10 64-bits
+- rspec 3.5.0
+- terminal-table 1.7.3
+
+### My thoughts
+- I used Ruby because it's my favorite language. Simple like that.
+
+- I handled the URL and Status Code data as a pair, saving them in a hash ({"url" => "https: // ...", "code" => 201 "}). Then I added each pair in an array. 
+
+- To manipulate the array of hashes, I create the following methods:
+    - parse_line: to find in each log's line the URL and the status code, saving them in the array of hashes
+    - top_three_url: to find the top 3 url in the array of hashes
+    - count_status_code_table: to print a table with each status code and the amount of times they occurs
+ 
+- Finally, I used RSpec because of my knowledge with the library
+
+### Running the code
+To run the code just type the following line in Terminal at project's root folder:
+```sh
+$ ruby main.rb
+```
+
+You can also run it with RSpec using the following line at project's root folder:
+```sh
+$ rspec spec/log_parser_spec.rb
+```
